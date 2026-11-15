@@ -1,0 +1,26 @@
+name: Veille Le Monde Discord
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # S'exécute toutes les 6 heures
+  workflow_dispatch:
+
+jobs:
+  run-lemonde:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Configuration de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Installation des dépendances
+        run: pip install requests feedparser
+
+      - name: Lancement du script
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }} # Ou secrets.DISCORD_WEBHOOK_LEMONDE
+        run: python bot_lemonde.py
