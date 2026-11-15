@@ -4,7 +4,7 @@ import requests
 
 RSS_URL = "https://www.lemonde.fr/rss/une.xml"
 # Tu peux réutiliser le même salon Discord ou créer un 2e secret DISCORD_WEBHOOK_LEMONDE
-WEBHOOK_DISCORD = os.environ.get("DISCORD_WEBHOOK")
+WEBHOOK_DISCORD = os.environ.get("DISCORD_WEBHOOK_LEMONDE")
 
 feed = feedparser.parse(RSS_URL)
 
