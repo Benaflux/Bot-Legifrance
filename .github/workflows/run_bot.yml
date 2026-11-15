@@ -1,0 +1,28 @@
+name: Veille Legifrance Discord
+
+on:
+  schedule:
+    - cron: '0 * * * *' # S'exécute toutes les heures
+  workflow_dispatch: # Permet de le lancer manuellement depuis l'onglet Actions
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Configuration de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Installation des dépendances
+        run: pip install requests
+
+      - name: Lancement du script
+        env:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: python bot.py
