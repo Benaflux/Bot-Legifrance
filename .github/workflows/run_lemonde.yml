@@ -22,5 +22,5 @@ jobs:
 
       - name: Lancement du script
         env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_LEMONDE }} 
+          DISCORD_WEBHOOK_LEMONDE: ${{ secrets.DISCORD_WEBHOOK_LEMONDE }} 
         run: python bot_lemonde.py
